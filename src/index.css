@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+:root {
+  --font-bounded: "Bounded", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --color-primary: #E10600;
+  --color-background: #080808;
+  --color-text: #F5F7F6;
+}
+
+:root {
+  font-family: var(--font-bounded);
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: #F5F7F6;
+  background-color: #080808;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #080808;
+}
+
+/* Кастомный курсор: скрываем системный на устройствах с мышью */
+@media (pointer: fine) {
+  html, body, body * {
+    cursor: none !important;
+  }
+}
+
+
+.cursor-fx {
+  transition: opacity 0.18s ease;
+}
+
+body.video-modal-open .cursor-fx {
+  opacity: 0;
+}
+
+@media (pointer: fine) {
+  body.video-modal-open,
+  body.video-modal-open * {
+    cursor: auto !important;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-bounded);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  font-weight: 900 !important;
+}
+
+h2 {
+  font-weight: 900;
+}
+
+/* Lenis smooth scroll  */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+.app-shell {
+  opacity: 0;
+  filter: blur(12px) brightness(0.75);
+  transform: translateY(26px) scale(0.985);
+  transition:
+    opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 1.25s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, filter, transform;
+  pointer-events: none;
+}
+
+.app-shell--ready {
+  opacity: 1;
+  filter: none;
+  transform: none;
+  will-change: auto;
+  pointer-events: auto;
+}
+
+/* Custom brand scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #E10600 #080808;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff2b2b 0%, #E10600 45%, #9b0000 100%);
+  border-radius: 999px;
+  border: 2px solid #080808;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #ff4a4a 0%, #ff1f1f 45%, #b30000 100%);
+}
+
+/* Индикатор «REC» / типа мигающий красный кружок камеры */
+@keyframes rec-indicator-blink {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow:
+      0 0 10px rgba(235, 0, 0, 0.9),
+      0 0 4px rgba(235, 0, 0, 0.6);
+    transform: scale(1);
+  }
+  48%,
+  52% {
+    opacity: 0.2;
+    box-shadow: 0 0 2px rgba(235, 0, 0, 0.25);
+    transform: scale(0.92);
+  }
+}
+
+.rec-indicator-dot {
+  animation: rec-indicator-blink 2.4s ease-in-out infinite;
+  will-change: opacity, transform;
+}
