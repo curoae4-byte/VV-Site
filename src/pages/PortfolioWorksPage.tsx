@@ -23,7 +23,6 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Углы наклона марки на листе рандомные
 const STAMP_ROTATIONS_DEG = [-5.5, 3.8, -2.4, 6.2, -4.1, 2.6, -3.3, 4.4] as const
-const LENS_ROTATIONS_DEG = [-15, 12, -8, 22, -18, 5, -25, 10] as const
 
 type WorksProjectCardProps = {
   project: WorkProject
